@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Estoque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <div class="logo-text"><strong>STOCK</strong><span>MANAGER</span></div>
+        </div>
+
+        <nav class="menu">
+            <p class="menu-title">MENU PRINCIPAL</p>
+            <a href="#" class="menu-item active"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-box"></i><span>Produtos</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-arrow-down"></i><span>Entrada de estoque</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-arrow-up"></i><span>Saída de estoque</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-clock-rotate-left"></i><span>Movimentações</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-triangle-exclamation"></i><span>Estoque baixo</span><span class="notification">5</span></a>
+            <p class="menu-title menu-bottom-title">CONFIGURAÇÕES</p>
+            <a href="#" class="menu-item"><i class="fa-solid fa-layer-group"></i><span>Categorias</span></a>
+            <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i><span>Configurações</span></a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">WC</div>
+                <div><strong>Usuário</strong><span>Administrador</span></div>
+            </div>
+            <button class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main-content">
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Pesquisar produto...">
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></button>
+                <div class="top-user">
+                    <div class="user-avatar">WC</div>
+                    <div class="top-user-info"><strong>Weliton</strong><span>Administrador</span></div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="page-header">
+                <div><h1>Dashboard</h1><p>Visão geral do seu estoque.</p></div>
+                <button class="primary-button" id="openModal"><i class="fa-solid fa-plus"></i>Novo produto</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon orange"><i class="fa-solid fa-boxes-stacked"></i></div><div class="stat-info"><span>Total de produtos</span><strong>1.245</strong></div><span class="stat-trend positive">+8.2%</span></div>
+                <div class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div><div class="stat-info"><span>Estoque normal</span><strong>1.120</strong></div><span class="stat-trend positive">90%</span></div>
+                <div class="stat-card"><div class="stat-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="stat-info"><span>Estoque baixo</span><strong>100</strong></div><span class="stat-trend warning">Atenção</span></div>
+                <div class="stat-card"><div class="stat-icon red"><i class="fa-solid fa-circle-xmark"></i></div><div class="stat-info"><span>Sem estoque</span><strong>25</strong></div><span class="stat-trend danger">Crítico</span></div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card movements-card">
+                    <div class="card-header">
+                        <div><h2>Movimentações</h2><p>Entradas e saídas do estoque</p></div>
+                        <select><option>Últimos 7 dias</option><option>Últimos 30 dias</option><option>Últimos 90 dias</option></select>
+                    </div>
+                    <div class="chart"><div class="chart-bars">
+                        <div class="bar-group"><div class="bar entry" style="height:75%"></div><div class="bar exit" style="height:40%"></div><span>Seg</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:60%"></div><div class="bar exit" style="height:35%"></div><span>Ter</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:90%"></div><div class="bar exit" style="height:50%"></div><span>Qua</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:65%"></div><div class="bar exit" style="height:45%"></div><span>Qui</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:80%"></div><div class="bar exit" style="height:55%"></div><span>Sex</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:50%"></div><div class="bar exit" style="height:30%"></div><span>Sáb</span></div>
+                        <div class="bar-group"><div class="bar entry" style="height:40%"></div><div class="bar exit" style="height:20%"></div><span>Dom</span></div>
+                    </div></div>
+                    <div class="chart-legend"><span><i class="legend-entry"></i>Entradas</span><span><i class="legend-exit"></i>Saídas</span></div>
+                </div>
+
+                <div class="card low-stock-card">
+                    <div class="card-header"><div><h2>Estoque baixo</h2><p>Produtos que precisam de reposição</p></div><button class="view-all">Ver todos</button></div>
+                    <div class="low-stock-list">
+                        <div class="stock-item"><div class="product-icon"><i class="fa-solid fa-oil-can"></i></div><div class="product-info"><strong>Óleo 5W30</strong><span>Estoque mínimo: 10</span></div><div class="stock-quantity danger-text">3 un.</div></div>
+                        <div class="stock-item"><div class="product-icon"><i class="fa-solid fa-filter"></i></div><div class="product-info"><strong>Filtro de óleo</strong><span>Estoque mínimo: 15</span></div><div class="stock-quantity warning-text">8 un.</div></div>
+                        <div class="stock-item"><div class="product-icon"><i class="fa-solid fa-gears"></i></div><div class="product-info"><strong>Correia dentada</strong><span>Estoque mínimo: 10</span></div><div class="stock-quantity warning-text">6 un.</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-card">
+                <div class="card-header"><div><h2>Produtos recentes</h2><p>Últimos produtos cadastrados</p></div><button class="view-all">Ver todos</button></div>
+                <div class="table-container">
+                    <table id="productsTable">
+                        <thead><tr><th>Código</th><th>Produto</th><th>Categoria</th><th>Estoque</th><th>Estoque mínimo</th><th>Status</th><th>Ações</th></tr></thead>
+                        <tbody>
+                            <tr><td>#00125</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-oil-can"></i></div><strong>Óleo 5W30</strong></div></td><td>Lubrificantes</td><td>25</td><td>10</td><td><span class="status normal">Normal</span></td><td><button class="action-button"><i class="fa-solid fa-ellipsis"></i></button></td></tr>
+                            <tr><td>#00126</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-filter"></i></div><strong>Filtro de óleo</strong></div></td><td>Filtros</td><td>5</td><td>10</td><td><span class="status low">Estoque baixo</span></td><td><button class="action-button"><i class="fa-solid fa-ellipsis"></i></button></td></tr>
+                            <tr><td>#00127</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-gears"></i></div><strong>Correia dentada</strong></div></td><td>Peças</td><td>0</td><td>5</td><td><span class="status empty">Sem estoque</span></td><td><button class="action-button"><i class="fa-solid fa-ellipsis"></i></button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header"><div><h2>Novo produto</h2><p>Cadastre um novo produto no estoque.</p></div><button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button></div>
+            <form id="productForm">
+                <div class="form-group"><label>Nome do produto</label><input type="text" id="productName" placeholder="Digite o nome do produto" required></div>
+                <div class="form-row">
+                    <div class="form-group"><label>Código</label><input type="text" placeholder="Ex: 00125" required></div>
+                    <div class="form-group"><label>Categoria</label><select required><option value="">Selecionar</option><option>Lubrificantes</option><option>Filtros</option><option>Peças</option><option>Ferramentas</option></select></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Estoque inicial</label><input type="number" min="0" placeholder="0" required></div>
+                    <div class="form-group"><label>Estoque mínimo</label><input type="number" min="0" placeholder="0" required></div>
+                </div>
+                <div class="form-actions"><button type="button" class="secondary-button" id="cancelModal">Cancelar</button><button type="submit" class="primary-button"><i class="fa-solid fa-check"></i>Cadastrar produto</button></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
