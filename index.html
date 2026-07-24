@@ -19,8 +19,8 @@
 
         <nav class="menu">
             <p class="menu-title">MENU PRINCIPAL</p>
-            <a href="#" class="menu-item active"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
-            <a href="#" class="menu-item"><i class="fa-solid fa-box"></i><span>Produtos</span></a>
+            <a href="#" class="menu-item active" data-page="dashboard"><i class="fa-solid fa-chart-pie"></i><span>Dashboard</span></a>
+            <a href="#" class="menu-item" data-page="products"><i class="fa-solid fa-box"></i><span>Produtos</span></a>
             <a href="#" class="menu-item"><i class="fa-solid fa-arrow-down"></i><span>Entrada de estoque</span></a>
             <a href="#" class="menu-item"><i class="fa-solid fa-arrow-up"></i><span>Saída de estoque</span></a>
             <a href="#" class="menu-item"><i class="fa-solid fa-clock-rotate-left"></i><span>Movimentações</span></a>
@@ -58,7 +58,7 @@
             </div>
         </header>
 
-        <section class="content">
+        <section class="content page" id="dashboardPage">
             <div class="page-header">
                 <div><h1>Dashboard</h1><p>Visão geral do seu estoque.</p></div>
                 <button class="primary-button" id="openModal"><i class="fa-solid fa-plus"></i>Novo produto</button>
@@ -113,6 +113,31 @@
                 </div>
             </div>
         </section>
+        <section class="content page products-page" id="productsPage" hidden>
+            <div class="page-header">
+                <div><h1>Produtos</h1><p>Gerencie todos os produtos cadastrados no seu estoque.</p></div>
+                <button class="primary-button" id="openProductModal" type="button"><i class="fa-solid fa-plus"></i>Novo produto</button>
+            </div>
+            <div class="products-toolbar">
+                <label class="product-search" for="productsSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="productsSearch" type="search" placeholder="Pesquisar por nome, código ou categoria"></label>
+                <span id="productsCount" class="products-count"></span>
+            </div>
+            <div class="card table-card products-list-card">
+                <div class="table-container">
+                    <table id="allProductsTable">
+                        <thead><tr><th>Código</th><th>Produto</th><th>Categoria</th><th>Estoque atual</th><th>Estoque mínimo</th><th>Status</th><th>Ações</th></tr></thead>
+                        <tbody>
+                            <tr data-code="00125"><td>#00125</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-oil-can"></i></div><strong>Óleo 5W30</strong></div></td><td>Lubrificantes</td><td class="stock-value">25</td><td class="minimum-value">10</td><td><span class="status normal">Normal</span></td><td><button class="stock-button" type="button"><i class="fa-solid fa-plus"></i>Adicionar estoque</button></td></tr>
+                            <tr data-code="00126"><td>#00126</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-filter"></i></div><strong>Filtro de óleo</strong></div></td><td>Filtros</td><td class="stock-value">5</td><td class="minimum-value">10</td><td><span class="status low">Estoque baixo</span></td><td><button class="stock-button" type="button"><i class="fa-solid fa-plus"></i>Adicionar estoque</button></td></tr>
+                            <tr data-code="00127"><td><span>#00127</span></td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-gears"></i></div><strong>Correia dentada</strong></div></td><td>Peças</td><td class="stock-value">0</td><td class="minimum-value">5</td><td><span class="status empty">Sem estoque</span></td><td><button class="stock-button" type="button"><i class="fa-solid fa-plus"></i>Adicionar estoque</button></td></tr>
+                            <tr data-code="00128"><td>#00128</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><strong>Jogo de chaves</strong></div></td><td>Ferramentas</td><td class="stock-value">18</td><td class="minimum-value">5</td><td><span class="status normal">Normal</span></td><td><button class="stock-button" type="button"><i class="fa-solid fa-plus"></i>Adicionar estoque</button></td></tr>
+                            <tr data-code="00129"><td>#00129</td><td><div class="table-product"><div class="product-icon"><i class="fa-solid fa-car-battery"></i></div><strong>Bateria 60Ah</strong></div></td><td>Elétrica</td><td class="stock-value">7</td><td class="minimum-value">8</td><td><span class="status low">Estoque baixo</span></td><td><button class="stock-button" type="button"><i class="fa-solid fa-plus"></i>Adicionar estoque</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="empty-state" id="emptyProducts" hidden>Nenhum produto encontrado.</p>
+            </div>
+        </section>
     </main>
 
     <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
@@ -134,6 +159,13 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal-overlay" id="stockModal" role="dialog" aria-modal="true" aria-labelledby="stockModalTitle" aria-hidden="true">
+        <div class="modal modal-small" tabindex="-1">
+            <div class="modal-header"><div><h2 id="stockModalTitle">Adicionar estoque</h2><p id="stockProductName">Informe a quantidade recebida.</p></div><button class="close-modal" id="closeStockModal" type="button" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button></div>
+            <form id="stockForm"><div class="form-group"><label for="stockQuantity">Quantidade a adicionar</label><input type="number" id="stockQuantity" min="1" step="1" placeholder="0" required></div><div class="form-actions"><button type="button" class="secondary-button" id="cancelStockModal">Cancelar</button><button type="submit" class="primary-button"><i class="fa-solid fa-check"></i>Confirmar entrada</button></div></form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
