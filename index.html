@@ -43,7 +43,7 @@
 
     <main class="main-content">
         <header class="topbar">
-            <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" placeholder="Pesquisar produto...">
@@ -115,24 +115,25 @@
         </section>
     </main>
 
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <div class="modal-header"><div><h2>Novo produto</h2><p>Cadastre um novo produto no estoque.</p></div><button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal" tabindex="-1">
+            <div class="modal-header"><div><h2 id="modalTitle">Novo produto</h2><p>Cadastre um novo produto no estoque.</p></div><button class="close-modal" id="closeModal" type="button" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button></div>
             <form id="productForm">
-                <div class="form-group"><label>Nome do produto</label><input type="text" id="productName" placeholder="Digite o nome do produto" required></div>
+                <div class="form-group"><label for="productName">Nome do produto</label><input type="text" id="productName" placeholder="Digite o nome do produto" required></div>
                 <div class="form-row">
-                    <div class="form-group"><label>Código</label><input type="text" placeholder="Ex: 00125" required></div>
-                    <div class="form-group"><label>Categoria</label><select required><option value="">Selecionar</option><option>Lubrificantes</option><option>Filtros</option><option>Peças</option><option>Ferramentas</option></select></div>
+                    <div class="form-group"><label for="productCode">Código</label><input type="text" id="productCode" placeholder="Ex: 00125" required></div>
+                    <div class="form-group"><label for="productCategory">Categoria</label><select id="productCategory" required><option value="">Selecionar</option><option>Lubrificantes</option><option>Filtros</option><option>Peças</option><option>Ferramentas</option></select></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label>Estoque inicial</label><input type="number" min="0" placeholder="0" required></div>
-                    <div class="form-group"><label>Estoque mínimo</label><input type="number" min="0" placeholder="0" required></div>
+                    <div class="form-group"><label for="initialStock">Estoque inicial</label><input type="number" id="initialStock" min="0" placeholder="0" required></div>
+                    <div class="form-group"><label for="minimumStock">Estoque mínimo</label><input type="number" id="minimumStock" min="0" placeholder="0" required></div>
                 </div>
                 <div class="form-actions"><button type="button" class="secondary-button" id="cancelModal">Cancelar</button><button type="submit" class="primary-button"><i class="fa-solid fa-check"></i>Cadastrar produto</button></div>
             </form>
         </div>
     </div>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
 </body>
 </html>
